@@ -1,0 +1,44 @@
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+
+concat([],L2,L2).
+concat([H|T],L2,[H|LS]):-concat(T,L2,LS).
+
+max(X,Y,Z):- X>Y,Z=X,!.
+max(X,Y,Y).
+
+sum([],0).
+sum([H|T],S):-sum(T,S2),S is S2+ H.
+
+count([H],1).
+count([H|T],N):-count(T,N1),N is N1+1.
+
+
+factorial(M,N) :- M==0,N=1.
+factorial(0,1).
+factorial(M,N):- M>0,M1 is M-1,factorial(M1,N1),N is N1*M.
+
+
+member_of(X,L):- concat(_,[X|_],L).
+subList(S,L):-concat(_,L1,L),concat(S,_,L1).
+isLastElement(X,L):-concat(_,[X],_).
+firstElement(X,[X]).
+firstElement(X,L):-concat([X|_],_,L).
+
+
+means(0,'Zero').
+means(1,'One').
+means(2,'Two').
+means(3,'Three').
+means(4,'Four').
+means(5,'Five').
+translate([],[]).
+translate([H|T],[H1|T1]):-means(H,H1),translate(T,T1).
+
+evenLength(L):-count(L,N),0 is N mod 2.
+oddLength(L) :- count(L,N),1 is N mod 2.
+
+
+maxElement([H],H).
+maxElement([H|T],M):- maxElement(T,M1).
+
